@@ -1,9 +1,5 @@
 # coding=utf-8
 
-def swap(list, i1, i2):
-    temp = list[i1]
-    list[i1] = list[i2]
-    list[i2] = temp
 
 
 def sort(list, offset, len):
@@ -17,19 +13,17 @@ def sort(list, offset, len):
             if list[r] < number:
                 break
         else:
-            swap(list, l, offset)
+            list[l], list[offset] = list[offset], list[l]
             break
         for l in xrange(l, r + 1):
             if list[l] > number:
                 break
         else:
-            swap(list, l, offset)
+            list[l], list[offset] = list[offset], list[l]
             break
-        swap(list, l, r)
+        list[l], list[r] = list[r], list[l]
     sort(list, offset, l - offset)
     sort(list, l + 1, offset + len - (l + 1))
-
-
 
 
 if __name__ == '__main__':
