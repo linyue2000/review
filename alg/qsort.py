@@ -1,7 +1,5 @@
 # coding=utf-8
 
-
-
 def sort(list, offset, len):
     if len <= 1:
         return
