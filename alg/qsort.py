@@ -13,14 +13,16 @@ def sort(list, offset, len):
     l = offset
     r = offset + len - 1
     while r > l:
-        while r > l and list[r] >= number:
-            r -= 1
-        if r == l:
+        for r in xrange(r, l - 1, -1):
+            if list[r] < number:
+                break
+        else:
             swap(list, l, offset)
             break
-        while r > l and list[l] <= number:
-            l += 1
-        if r == l:
+        for l in xrange(l, r + 1):
+            if list[l] > number:
+                break
+        else:
             swap(list, l, offset)
             break
         swap(list, l, r)
