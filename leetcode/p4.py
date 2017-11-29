@@ -20,11 +20,13 @@ class Solution(object):
         for k in xrange(0, median_index + 1):
             # 为了运行效率就不封装成函数调用了
             if i == size1:
-                num = nums2[j]
-                j += 1
+                j += median_index + 1 - k
+                num = nums2[j - 1]
+                break
             elif j == size2:
-                num = nums1[i]
-                i += 1
+                i += median_index + 1 - k
+                num = nums1[i - 1]
+                break
             else:
                 n1 = nums1[i]
                 n2 = nums2[j]
