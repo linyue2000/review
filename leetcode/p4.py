@@ -20,7 +20,7 @@ class Solution(object):
         for k in xrange(0, median_index + 1):
             # 为了运行效率就不封装成函数调用了
             if i == size1:
-                num = nums2[j - 1]
+                num = nums2[j]
                 j += 1
             elif j == size2:
                 num = nums1[i]
