@@ -54,3 +54,12 @@ X=x表示，{s属于S，其中X(s)=x}
 几何分布	P(X=k) = q^(k-1) * p		E[X] = 1/p		Var[X] = q/p^2			p为每重伯努利试验成功的概率，q=1-p	X的物理意义是，做几次伯努利试验才能第一次成功
 二项分布	P(X=k) = ∑Cnk * p^k * q^(n-k)		记做b(k; n, p)		p同上			X物理意义是，n重伯努利试验成功的次数
 		E[X] = np	Var[X] = npq
+[主定理]
+主方法	T(n)=a*T(n/b)+f(n)		对比f(n)和n^logb(a)的"大小"
+	1. 若存在常数ε>0，f(n)=O(n^logb(a-ε))，则T(n)=Θ(n^logb(a))
+	2. 若f(n)=Θ(n^logb(a))，则T(n)=iΘ((n^logb(a)) * lgn)
+	3. 若存在常数ε>0，f(n)=Ω(n^logb(a+ε))，且存在c<1，使n足够大的时候都有af(n/b)<cf(n)，则T(n)=f(n)
+
+
+
+
