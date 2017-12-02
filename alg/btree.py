@@ -48,6 +48,26 @@ def mid_cpu_simulation(root):
             continue
 
 
+def pre_recursive(root):
+    if not root:
+        return
+    print root.value,
+    pre_recursive(root.left)
+    pre_recursive(root.right)
+
+
+def pre_iterate(root):
+    stack = []
+    while root or stack:
+        if root:
+            print root.value,
+            stack.append(root)
+            root = root.left
+        else:
+            root = stack.pop()
+            root = root.right
+
+
 def mid_recursive(root):
     if not root:
         return
@@ -57,10 +77,6 @@ def mid_recursive(root):
 
 
 def mid_iterate(root):
-    '''
-
-    :type root: Node
-    '''
     if not root:
         return
     cur = root
@@ -75,32 +91,99 @@ def mid_iterate(root):
             cur = cur.right
 
 
+def post_recursive(root):
+    if not root:
+        return
+    post_recursive(root.left)
+    post_recursive(root.right)
+    print root.value,
+
+
+def post_iterate(root):
+    stack = []
+    visited = {}
+    cur = root
+    while cur or stack:
+        if cur:
+            stack.append(cur)
+            cur = cur.left
+        else:
+            cur = stack.pop()
+            if cur.right not in visited:
+                stack.append(cur)
+                visited[cur.right] = True
+                cur = cur.right
+            else:
+                print cur.value,
+                cur = None
+
+
+def post_iterate2(root):
+    stack = []
+    cur = root
+    last_pop = None
+    while cur or stack:
+        if cur:
+            stack.append(cur)
+            cur = cur.left
+        else:
+            cur = stack.pop()
+            if cur.right and last_pop != cur.right:
+                stack.append(cur)
+                cur = cur.right
+            else:
+                last_pop = cur
+                print cur.value,
+                cur = None
+
+
 def create_tree():
     '''
-
+                          1
+                2                   3
+            4       5           6       7
+                  8           9
     :rtype: Node
     '''
-    n1 = Node('a')
-    n2 = Node('b')
-    n3 = Node('c')
-    n4 = Node('d')
-    n5 = Node('e')
-    n6 = Node('f')
-    n7 = Node('g')
+    n1 = Node('1')
+    n2 = Node('2')
+    n3 = Node('3')
+    n4 = Node('4')
+    n5 = Node('5')
+    n6 = Node('6')
+    n7 = Node('7')
+    n8 = Node('8')
+    n9 = Node('9')
     n1.left = n2
     n1.right = n3
     n2.left = n4
-    n2.right = n6
-    n4.right = n5
-    n6.left = n7
+    n2.right = n5
+    n3.left = n6
+    n3.right = n7
+    n5.left = n8
+    n6.left = n9
     return n1
 
 
 if __name__ == '__main__':
     root = create_tree()
+    pre_recursive(root)
+    print
+    pre_iterate(root)
+    print
+    print
+    #
     mid_cpu_simulation(root)
     print
     mid_recursive(root)
     print
     mid_iterate(root)
+    print
+    print
+    #
+    post_recursive(root)
+    print
+    post_iterate(root)
+    print
+    post_iterate2(root)
     print
