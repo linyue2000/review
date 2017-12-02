@@ -13,7 +13,7 @@ class Node():
         self.right = right
 
 
-def mid_cpu_simulation(root):
+def inorder_cpu_simulation(root):
     # jump, function call
     pc = 0
     stack = [pc, root]
@@ -48,15 +48,15 @@ def mid_cpu_simulation(root):
             continue
 
 
-def pre_recursive(root):
+def preorder_recursive(root):
     if not root:
         return
     print root.value,
-    pre_recursive(root.left)
-    pre_recursive(root.right)
+    preorder_recursive(root.left)
+    preorder_recursive(root.right)
 
 
-def pre_iterate(root):
+def preorder_iterate(root):
     stack = []
     while root or stack:
         if root:
@@ -68,15 +68,15 @@ def pre_iterate(root):
             root = root.right
 
 
-def mid_recursive(root):
+def inorder_recursive(root):
     if not root:
         return
-    mid_recursive(root.left)
+    inorder_recursive(root.left)
     print root.value,
-    mid_recursive(root.right)
+    inorder_recursive(root.right)
 
 
-def mid_iterate(root):
+def inorder_iterate(root):
     if not root:
         return
     cur = root
@@ -91,15 +91,15 @@ def mid_iterate(root):
             cur = cur.right
 
 
-def post_recursive(root):
+def postorder_recursive(root):
     if not root:
         return
-    post_recursive(root.left)
-    post_recursive(root.right)
+    postorder_recursive(root.left)
+    postorder_recursive(root.right)
     print root.value,
 
 
-def post_iterate(root):
+def postorder_iterate(root):
     stack = []
     visited = {}
     cur = root
@@ -118,7 +118,7 @@ def post_iterate(root):
                 cur = None
 
 
-def post_iterate2(root):
+def postorder_iterate2(root):
     stack = []
     cur = root
     last_pop = None
@@ -167,23 +167,23 @@ def create_tree():
 
 if __name__ == '__main__':
     root = create_tree()
-    pre_recursive(root)
+    preorder_recursive(root)
     print
-    pre_iterate(root)
-    print
-    print
-    #
-    mid_cpu_simulation(root)
-    print
-    mid_recursive(root)
-    print
-    mid_iterate(root)
+    preorder_iterate(root)
     print
     print
     #
-    post_recursive(root)
+    inorder_cpu_simulation(root)
     print
-    post_iterate(root)
+    inorder_recursive(root)
     print
-    post_iterate2(root)
+    inorder_iterate(root)
+    print
+    print
+    #
+    postorder_recursive(root)
+    print
+    postorder_iterate(root)
+    print
+    postorder_iterate2(root)
     print
