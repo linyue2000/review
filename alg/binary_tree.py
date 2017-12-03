@@ -15,11 +15,10 @@ class Node():
 
 def inorder_cpu_simulation(root):
     # jump, function call
-    pc = 0
-    stack = [pc, root]
+    stack = [-1, root]
+    pc = 1
     # function "def mid_recursive(root):"
     while stack:
-        pc += 1
         root = stack[len(stack) - 1]
         if pc == 1:
             if not root:
@@ -29,23 +28,24 @@ def inorder_cpu_simulation(root):
                 continue
         elif pc == 2:
             # jump, function call
-            stack.append(pc)
+            stack.append(pc + 1)
             stack.append(root.left)
-            pc = 0
+            pc = 1
             continue
         elif pc == 3:
             print root.value,
         elif pc == 4:
             # jump, function call
-            stack.append(pc)
+            stack.append(pc + 1)
             stack.append(root.right)
-            pc = 0
+            pc = 1
             continue
         else:
             # jump, function return
             stack.pop()
             pc = stack.pop()
             continue
+        pc += 1
 
 
 def preorder_recursive(root):
