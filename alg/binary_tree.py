@@ -160,7 +160,7 @@ def create_tree():
     n2.right = n5
     n3.left = n6
     n3.right = n7
-    n5.left = n8
+    n5.right = n8
     n6.left = n9
     return n1
 
